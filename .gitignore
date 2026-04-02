@@ -1,0 +1,18 @@
+# 编译产物
+*.o
+*.out
+ch01-tutorial-introduction/hello
+ch01-tutorial-introduction/example
+ch02-types-operators-expressions/example
+ch03-control-flow/example
+ch04-functions-program-structure/example
+ch05-pointers-and-arrays/example
+ch06-structures/example
+ch07-input-and-output/example
+ch08-unix-system-interface/example
+
+# GDB
+*.gdb
+
+# 系统文件
+.DS_Store
