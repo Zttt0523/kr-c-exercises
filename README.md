@@ -6,9 +6,15 @@
 
 ```
 ~/c-language/
-├── Makefile                  # 全局构建配置
+├── Makefile                  # 全局构建配置（自动发现 .c 文件）
+├── README.md
+├── TIPS.md                   # C89 vs 现代 C 差异速查
 ├── reference-book.pdf        # K&R 教材
+├── bin/                      # 编译产物（已 gitignore）
 ├── ch01-tutorial-introduction/
+│   ├── hello.c
+│   ├── examples/             # 书中示例代码
+│   └── exercises/            # 课后练习
 ├── ch02-types-operators-expressions/
 ├── ch03-control-flow/
 ├── ch04-functions-program-structure/
@@ -18,10 +24,8 @@
 └── ch08-unix-system-interface/
 ```
 
-每章目录下包含：
-
-- `examples/` — 书中示例代码
-- `exercises/` — 课后练习
+- 源码（`.c`）在各章节目录下
+- 编译产物统一输出到 `bin/`，不进入版本控制
 
 ## 环境要求
 
@@ -33,36 +37,37 @@
 
 ## 编译与运行
 
-### 单文件编译
+### 使用 Make（推荐）
+
+Makefile 会自动发现所有 `.c` 文件，编译到 `bin/` 下保持目录结构：
 
 ```bash
-# 基本编译（输出默认 a.out）
-gcc hello.c
+# 编译所有程序
+make all
 
-# 指定输出文件名
-gcc -o hello hello.c
-
-# 完整编译选项（推荐）
-gcc -std=c17 -Wall -Wextra -pedantic -g -o hello hello.c
+# 清除所有编译产物
+make clean
 ```
 
 ### 运行程序
 
 ```bash
-./hello
+# 编译后的程序在 bin/ 下
+bin/ch01-tutorial-introduction/hello
+bin/ch01-tutorial-introduction/examples/fahr_to_celsius
 ```
 
-### 使用 Make
+### 单文件手动编译
 
 ```bash
-# 编译所有章节
-make all
+# 基本编译（输出默认 a.out）
+gcc hello.c
 
-# 编译指定程序
-make ch01-tutorial-introduction/hello
+# 指定输出到 bin/
+gcc -std=c17 -Wall -Wextra -pedantic -g -o bin/hello hello.c
 
-# 清除所有编译产物
-make clean
+# 链接数学库（如使用 math.h）
+gcc -std=c17 -Wall -Wextra -pedantic -g -o bin/test_math test_math.c -lm
 ```
 
 ## GCC 常用选项
@@ -139,7 +144,7 @@ gdb ./hello
 
 ## 注意事项
 
-本书基于 C89 标准，编译使用 C17 标准。主要差异：
+本书基于 C89 标准，编译使用 C17 标准。详细差异见 [TIPS.md](TIPS.md)，主要差异：
 
 | 特性 | 书中写法（C89） | 现代写法（C17） |
 |------|----------------|----------------|
