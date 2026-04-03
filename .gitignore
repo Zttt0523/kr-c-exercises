@@ -1,15 +1,12 @@
 # 编译产物
 *.o
 *.out
-ch01-tutorial-introduction/hello
-ch01-tutorial-introduction/example
-ch02-types-operators-expressions/example
-ch03-control-flow/example
-ch04-functions-program-structure/example
-ch05-pointers-and-arrays/example
-ch06-structures/example
-ch07-input-and-output/example
-ch08-unix-system-interface/example
+*.exe
+
+# 源码目录下的可执行文件（无后缀的编译输出）
+ch*/**/hello
+ch*/**/example
+ch*/**/test_*
 
 # GDB
 *.gdb
