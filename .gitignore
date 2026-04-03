@@ -1,13 +1,10 @@
-# 编译产物
+# 编译产物统一输出到 bin/
+bin/
+
+# 其他编译中间文件
 *.o
 *.out
 *.exe
-
-# 源码目录下的可执行文件（无后缀的编译输出）
-# 注意：不要用 test_* 通配，否则会误匹配 test_foo.c 源码
-ch*/**/fahr_to_celsius
-ch*/**/fahr_to_celsius_float
-ch*/**/hello
 
 # GDB
 *.gdb
